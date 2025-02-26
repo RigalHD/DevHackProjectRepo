@@ -1,0 +1,2 @@
+[console_scripts]
+funny_jump = funny_jump.bootstrap.cli:main

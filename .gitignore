@@ -1,0 +1,13 @@
+__pycache__/
+venv/
+.venv/
+bot/database/media/*
+.mypy_cache/
+.idea/
+
+nohup.out
+alembic.ini
+
+*.pyc
+.env
+
