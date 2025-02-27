@@ -1,2 +1,2 @@
 [console_scripts]
-telegram_assistant = telegram_assistant.bot.__main__:main
+telegram_assistant = "telegram_assistant.bot.__main__:main"
