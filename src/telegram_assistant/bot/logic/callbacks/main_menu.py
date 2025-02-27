@@ -18,8 +18,7 @@ async def admin_panel_handler(query: CallbackQuery) -> None:
 
 @router.callback_query(MainMenuCBData.filter(F.action == "BackToMainMenu"))
 async def back_to_main_menu_handler(query: CallbackQuery, db: Database) -> None:
-    message_text = \
-        f"<b>Приветствуем, {query.from_user.first_name}</b>\n\n"
+    message_text = f"<b>Приветствуем, {query.from_user.first_name}</b>\n\n"
 
     user = await db.telegram_users.get(query.from_user.id)
 

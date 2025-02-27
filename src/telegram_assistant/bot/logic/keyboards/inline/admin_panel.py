@@ -3,7 +3,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from telegram_assistant.bot.logic.callbackdata import (
     MainMenuCBData,
-    )
+)
 
 
 def admin_panel_kb() -> InlineKeyboardMarkup:
@@ -11,8 +11,8 @@ def admin_panel_kb() -> InlineKeyboardMarkup:
 
     builder.row(
         InlineKeyboardButton(
-        text="В главное меню",
-        callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
+            text="В главное меню",
+            callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
         ),
     )
 
@@ -23,8 +23,8 @@ def back_to_admin_panel_kb() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.row(
         InlineKeyboardButton(
-        text="В админ-панель",
-        callback_data=MainMenuCBData(action="AdminPanelView").pack(),
+            text="В админ-панель",
+            callback_data=MainMenuCBData(action="AdminPanelView").pack(),
         ),
     )
 

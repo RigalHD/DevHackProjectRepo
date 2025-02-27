@@ -14,7 +14,7 @@ dp = Dispatcher(storage=storage)
 dp.include_routers(
     *logic_routers,
     *middlewares_routers,
-    )
+)
 
 dp.message.middleware(DatabaseMiddleware())
 dp.callback_query.middleware(DatabaseMiddleware())

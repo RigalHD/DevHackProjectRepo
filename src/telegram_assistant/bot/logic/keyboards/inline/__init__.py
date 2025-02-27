@@ -9,4 +9,4 @@ __all__ = [
     "back_to_admin_panel_kb",
     "back_to_main_menu_kb",
     "main_menu_kb",
-    ]
+]

@@ -10,8 +10,8 @@ def main_menu_kb(user_admin_profile: int) -> InlineKeyboardMarkup:
     if user_admin_profile:
         builder.row(
             InlineKeyboardButton(
-            text="Админ-панель",
-            callback_data=MainMenuCBData(action="AdminPanelView").pack(),
+                text="Админ-панель",
+                callback_data=MainMenuCBData(action="AdminPanelView").pack(),
             ),
         )
 
@@ -22,8 +22,8 @@ def back_to_main_menu_kb() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.row(
         InlineKeyboardButton(
-        text="В главное меню",
-        callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
+            text="В главное меню",
+            callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
         ),
     )
 
