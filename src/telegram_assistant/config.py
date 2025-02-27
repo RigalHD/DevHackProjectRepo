@@ -11,7 +11,7 @@ load_dotenv()
 class DatabaseConfig:
     name: str | None = getenv("DATABASE_NAME")
     user: str | None = getenv("DATABASE_USER")
-    passwd: str | None = getenv("DATABASE_PASSWORD", None)
+    password: str | None = getenv("DATABASE_PASSWORD", None)
     port: int = int(getenv("DATABASE_PORT", "5432"))
     host: str = getenv("DATABASE_HOST", "db")
 
@@ -25,7 +25,7 @@ class DatabaseConfig:
             drivername=f"{self.database_system}+{self.driver}",
             username=self.user,
             database=self.name,
-            password=self.passwd,
+            password=self.password,
             port=self.port,
             host=self.host,
         ).render_as_string(hide_password=False)
