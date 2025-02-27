@@ -36,6 +36,6 @@ class RegistrationCheckMiddleware(BaseMiddleware):
                     )
             else:
                 await user_repo.create(event.from_user)
-                await Database(session=session).bot_administrators.create(event.from_user.id, 100)  #!!!! УБРАТЬ!
+                # await Database(session=session).bot_administrators.create(event.from_user.id, 100)
 
         return await handler(event, data)
