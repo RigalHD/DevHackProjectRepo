@@ -6,6 +6,8 @@ src/DevHackProject.egg-info/dependency_links.txt
 src/DevHackProject.egg-info/entry_points.txt
 src/DevHackProject.egg-info/requires.txt
 src/DevHackProject.egg-info/top_level.txt
+src/telegram_assistant/__init__.py
+src/telegram_assistant/config.py
 src/telegram_assistant/bot/__init__.py
 src/telegram_assistant/bot/__main__.py
 src/telegram_assistant/bot/discpatcher.py
