@@ -10,7 +10,7 @@ from telegram_assistant.database import Database
 router = Router()
 
 
-@router.message(CommandStart(), flags={"needed_perms_level": 1})
+@router.message(CommandStart())
 async def start(message: Message, db: Database) -> None:
     message_text = f"<b>Приветствую, {message.from_user.first_name}</b>"
     user = await db.telegram_users.get(message.from_user.id)
