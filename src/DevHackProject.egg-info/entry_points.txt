@@ -1,2 +1,2 @@
 [console_scripts]
-funny_jump = funny_jump.bootstrap.cli:main
+telegram_assistant = "telegram_assistant.bot.__main__:main"
