@@ -34,5 +34,5 @@ DATABASE_USER=<Имя пользователя базы данных>
 ### Для запуска введите в консоль:
 
 ```cmd
-python -m src.telegram_assistant.bot
+python -m telegram_assistant.bot
 ```
