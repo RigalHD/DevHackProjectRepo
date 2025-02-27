@@ -72,6 +72,7 @@ ignore = [
   'S311',
   'PGH003',
   'D205',
+  'EXE001',
   # Not important now
   'RUF009',
   'ANN401',
