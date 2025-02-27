@@ -14,7 +14,7 @@ class TelegramUsers(BaseModel):
         primary_key=True,
         unique=True,
         nullable=False,
-        )
+    )
     first_name: Mapped[str] = mapped_column(nullable=True)
     last_name: Mapped[str] = mapped_column(nullable=True)
     username: Mapped[str] = mapped_column(nullable=True)
@@ -25,7 +25,7 @@ class TelegramUsers(BaseModel):
         back_populates="telegram_profile",
         uselist=False,
         lazy="selectin",
-        )
+    )
 
     def __str__(self) -> str:
         return f"<telegram_id={self.telegram_id}>"
@@ -41,12 +41,12 @@ class BotAdministrators(BaseModel):
     telegram_profile: Mapped["TelegramUsers"] = relationship(
         back_populates="admin_profile",
         uselist=False,
-        )
+    )
     telegram_id: Mapped[int] = mapped_column(
         ForeignKey(column="telegram_users.telegram_id", ondelete="CASCADE"),
         unique=True,
         nullable=False,
-        )
+    )
     permissions_level: Mapped[int] = mapped_column(default=0)
 
     registation_datetime: Mapped[datetime] = mapped_column(default=datetime.now, nullable=True)

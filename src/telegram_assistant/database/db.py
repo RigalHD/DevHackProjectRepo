@@ -18,10 +18,9 @@ class Database:
         session: AsyncSession,
         telegram_users: TelegramUsersRepository = None,
         bot_administrators: BotAdministratorsRepository = None,
-        ) -> None:
-
-        self.telegram_users: TelegramUsersRepository =\
-            telegram_users or TelegramUsersRepository(session=session)
-        self.bot_administrators: BotAdministratorsRepository =\
-            bot_administrators or BotAdministratorsRepository(session=session)
+    ) -> None:
+        self.telegram_users: TelegramUsersRepository = telegram_users or TelegramUsersRepository(session=session)
+        self.bot_administrators: BotAdministratorsRepository = bot_administrators or BotAdministratorsRepository(
+            session=session
+        )
         self.session: AsyncSession = session

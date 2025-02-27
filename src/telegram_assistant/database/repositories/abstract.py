@@ -22,8 +22,7 @@ class Repository(Generic[AbstractModel]):
         return await self.session.get(self.type_model, id_)
 
     async def get_many(self, whereclause: dict) -> Sequence[BaseModel]:
-        """:param whereclause: {AbstractModel.column: value}
-        """
+        """:param whereclause: {AbstractModel.column: value}"""
         stmt = select(self.type_model)
         for key, value in whereclause.items():
             stmt = stmt.where(key == value)
@@ -36,5 +35,4 @@ class Repository(Generic[AbstractModel]):
         return result.scalars().all()
 
     @abstractmethod
-    async def create(self, *args: tuple[Any], **kwargs: dict[str, Any]) -> None:
-        ...
+    async def create(self, *args: tuple[Any], **kwargs: dict[str, Any]) -> None: ...
