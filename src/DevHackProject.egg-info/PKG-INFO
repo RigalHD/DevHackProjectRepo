@@ -8,6 +8,8 @@ Requires-Dist: alembic==1.14.1
 Requires-Dist: asyncpg==0.30.0
 Requires-Dist: SQLAlchemy==2.0.38
 Requires-Dist: python-dotenv==1.0.1
+Requires-Dist: requests==2.32.3
+Requires-Dist: beautifulsoup4==4.13.3
 Provides-Extra: lint
 Requires-Dist: ruff==0.9.4; extra == "lint"
 Provides-Extra: build
@@ -49,5 +51,5 @@ DATABASE_USER=<Имя пользователя базы данных>
 ### Для запуска введите в консоль:
 
 ```cmd
-python -m src.telegram_assistant.bot
+python -m telegram_assistant.bot
 ```
