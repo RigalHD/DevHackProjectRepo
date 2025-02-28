@@ -6,7 +6,8 @@ TEACHER_URL = "http://www.mmcs.sfedu.ru/faculty/staff"
 
 class URLParser:
     def parse_teachers(self) -> dict[str, str]:
-        """Возвращает словарь c такой структурой:
+        """
+        Возвращает словарь c такой структурой:
         ключ - ФИО учителя,
         значение - URL-адрес его профиля.
         """

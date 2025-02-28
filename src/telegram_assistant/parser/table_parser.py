@@ -11,9 +11,26 @@ class TableParser:
         data_row_offset: int,
         table_number: int | None = None,
     ) -> dict[str, str]:
+        """
+        Парсит HTML-таблицы.
+
+        :param url: URL-адрес страницы для парсинга;
+        :param table_class: HTML-класс таблицы для парсинга;
+        :param row_class_name: HTML-класс ряда таблицы без номера
+                               (Пример: было - row11, стало - row);
+        :param data_row_offset: количество рядов, парсинг которых не должен проводиться
+                                (Пример: первые 2 ряда таблицы - названия колонок. Значением будет 2);
+        :param table_number: Применяется только в случае, если на сайте присутствует
+                             две или более таблицы с одинаковым названием класса;
+
+        Возвращает результат в формате словаря:
+            ключ - ряд в таблице (Пример: row1, row15 и т.п.),
+            значение - первая ячейка ряда.
+        """
         response = requests.get(url=url)
 
         bs = BeautifulSoup(response.text, "html.parser")
+
         if table_number is None:
             table = bs.find(class_=table_class)
         else:
@@ -39,7 +56,25 @@ class TableParser:
         row_class_name: str,
         row_number: int,
         table_number: int | None = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, str | dict[str, str]]:
+        """
+        Подробно парсит ряд HTML-таблицы.
+
+        :param url: URL-адрес страницы для парсинга;
+        :param table_class: HTML-класс таблицы для парсинга;
+        :param row_class_name: HTML-класс ряда таблицы без номера
+                               (Пример: было - row11, стало - row);
+        :param row_number: номер ряда таблицы, парсинг которого будет произведен;
+        :param table_number: Применяется только в случае, если на сайте присутствует
+                             две или более таблицы c одинаковым названием класса;
+
+        Возвращает результат в формате словаря:
+            ключ - имя колонки в таблице,
+            значение - значение ячейки ряда c этим именем
+                       ИЛИ словарь c "подколонками" в качестве ключа
+                                и значение ячейки ряда c именем колонки.
+
+        """
         response = requests.get(url=url)
 
         name_rows_count = 2

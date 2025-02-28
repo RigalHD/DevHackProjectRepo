@@ -72,6 +72,8 @@ ignore = [
   'SIM108',
   'FBT001',
   'FBT002',
+  'D212',
+  'W293',
   # Does not work correctly
   'TC002',
   'TC001',
