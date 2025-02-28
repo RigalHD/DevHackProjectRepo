@@ -2,20 +2,19 @@ from telegram_assistant.parser.parser import Parser
 from bs4 import BeautifulSoup, Comment, Script
 import requests
 
-link_admission_rules = "https://sfedu.ru/www/stat_pages22.show?p=ABT/N8202/P"
-link_admission_vector = "https://sfedu.ru/www/stat_pages22.show?p=ABT/N8206/P"
-link_admission_instruction = "https://sfedu.ru/00_main_2010/abitur/abit_2024/Instr_test_2024.pdf"
-link_admission_schedule_bakalavr_and_specialist = "https://sfedu.ru/00_main_2010/abitur/abit_2024/rasp_bak.pdf"
-link_admission_schedule_magistratura = "https://sfedu.ru/00_main_2010/abitur/abit_2024/rasp_mag.pdf"
-link_admission_schedule_aspirantura = "https://sfedu.ru/00_main_2010/abitur/abit_2024/rasp_asp.pdf"
-link_admission_foreign = "https://sfedu.ru/www/stat_pages22.show?p=ABT/N8216/P"
+LINK_ADMISSION_RULES = "https://sfedu.ru/www/stat_pages22.show?p=ABT/N8202/P"
+LINK_ADMISSION_VECTOR = "https://sfedu.ru/www/stat_pages22.show?p=ABT/N8206/P"
+LINK_ADMISSION_INSTRUCTION = "https://sfedu.ru/00_main_2010/abitur/abit_2024/Instr_test_2024.pdf"
+LINK_ADMISSION_SCHEDULE_BAKALAVR_AND_SPECIALIST = "https://sfedu.ru/00_main_2010/abitur/abit_2024/rasp_bak.pdf"
+LINK_ADMISSION_SCHEDULE_MAGISTRATURA = "https://sfedu.ru/00_main_2010/abitur/abit_2024/rasp_mag.pdf"
+LINK_ADMISSION_SCHEDULE_ASPIRANTURA = "https://sfedu.ru/00_main_2010/abitur/abit_2024/rasp_asp.pdf"
+LINK_ADMISSION_FOREIGN = "https://sfedu.ru/www/stat_pages22.show?p=ABT/N8216/P"
 
 class BaseParser(Parser):
-    #(str - возвращает текст без тэгов, html - html код)
-    def get_rules(self, return_what: str = "str") -> str:
+    def get_rules(self, html: bool = False) -> str:
         all_text = []
 
-        response = requests.get(link_admission_rules)
+        response = requests.get(LINK_ADMISSION_RULES)
 
         bs = BeautifulSoup(response.text, "html.parser")
 
@@ -40,13 +39,15 @@ class BaseParser(Parser):
         for hr in hrs:
             hr.decompose()
         
-        if return_what == "str":
+        if not html:
             return all_text[0].get_text()
-        elif return_what == "html":
+        else:
             return all_text[0].prettify()
     
-    #Принимает url преподавателя и возвращает текст с его описанием
     def get_type_employee(self, url: str) -> str:
+        """
+        Принимает url преподавателя и возвращает текст с его описанием
+        """
         response = requests.get(url, timeout=10)
         
         bs = BeautifulSoup(response.text, "html.parser")
