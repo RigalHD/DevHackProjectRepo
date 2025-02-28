@@ -1,12 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 
-from telegram_assistant.parser.parser import Parser
-
 TEACHER_URL = "http://www.mmcs.sfedu.ru/faculty/staff"
 
 
-class URLParser(Parser):
+class URLParser:
     def parse_teachers(self) -> dict[str, str]:
         """Возвращает словарь c такой структурой:
         ключ - ФИО учителя,

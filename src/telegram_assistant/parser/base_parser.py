@@ -1,12 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 
-from telegram_assistant.parser.parser import Parser
-
 ADMISSION_RULES_URL = "https://sfedu.ru/www/stat_pages22.show?p=ABT/N8202/P"
 
 
-class BaseParser(Parser):
+class BaseParser:
     def parse_admission_rules(self, html: bool = False) -> str:
         """:param html: False - возвращает результат в формате текста;
         True - возвращает результат в формате HTML.
