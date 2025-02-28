@@ -1,10 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-from telegram_assistant.parser.parser import Parser
 
-
-class TableParser(Parser):
+class TableParser:
     def lite_parse_table(
         self,
         url: str,
