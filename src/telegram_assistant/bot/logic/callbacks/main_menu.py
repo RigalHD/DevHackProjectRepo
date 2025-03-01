@@ -58,6 +58,29 @@ async def teachers_parse_handler(query: CallbackQuery, parse_repo: ParserReposit
     await query.message.answer(text="Нажмите на ФИО любого учителя, чтобы получить краткий рассказ о нем")
 
 
+@router.callback_query(ParseCBData.filter(F.action == "PlacesParse"))
+async def places_parse_handler(query: CallbackQuery, parse_repo: ParserRepository) -> None:
+    message_texts: list[str] = [""]
+    places_dict = parse_repo.parse_table(reversed_result=False)
+
+    for row, name in places_dict.items():
+        cutted_place_url = "place_" + row.lstrip("row")
+        deep_link = await create_start_link(query.bot, cutted_place_url, encode=True)
+        place_info = f'<a href="{deep_link}">{name}</a>\n'
+        if len(message_texts[-1] + place_info) > MAX_MESSAGE_LEN:
+            message_texts.append(place_info)
+        else:
+            message_texts[-1] += place_info
+
+    for text in message_texts:
+        await query.message.answer(
+            text=text,
+            parse_mode="HTML",
+        )
+
+    await query.message.answer(text="Нажмите на название направления, чтобы получить краткий рассказ о нем")
+
+
 @router.callback_query(ParseCBData.filter(F.action == "DepartmentsParse"))
 async def department_parse_handler(query: CallbackQuery, parse_repo: ParserRepository) -> None:
     message_texts: list[str] = [""]
