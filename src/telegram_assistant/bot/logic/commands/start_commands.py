@@ -56,10 +56,12 @@ async def start_with_deep_link(
 
 @router.message(CommandStart())
 async def start(message: Message) -> None:
-    message_text = f"<b>Приветствую, {message.from_user.first_name}</b>\n"\
-        "Данный бот сочетает в себе актуальную информацию и ИИ ассистента,"\
-            "что позволяет пользователю получать краткую и "\
-                "максимально информативную выжимку данных"
+    message_text = (
+        f"<b>Приветствую, {message.from_user.first_name}</b>\n"
+        "Данный бот сочетает в себе актуальную информацию и ИИ ассистента,"
+        "что позволяет пользователю получать краткую и "
+        "максимально информативную выжимку данных"
+    )
 
     await message.answer(
         text=message_text,
