@@ -10,6 +10,7 @@ class TableParser:
         row_class_name: str,
         data_row_offset: int,
         table_number: int | None = None,
+        reversed_result: bool = False,
     ) -> dict[str, str]:
         """
         Парсит HTML-таблицы.
@@ -22,13 +23,15 @@ class TableParser:
                                 (Пример: первые 2 ряда таблицы - названия колонок. Значением будет 2);
         :param table_number: Применяется только в случае, если на сайте присутствует
                              две или более таблицы с одинаковым названием класса;
+        :param reversed_result: False - обычный результат работы метода,
+                                True - ключ и значение в словаре поменяются местами;
 
         Возвращает результат в формате словаря:
             ключ - ряд в таблице (Пример: row1, row15 и т.п.),
             значение - первая ячейка ряда.
         """
         response = requests.get(url=url)
-
+        print(table_class, row_class_name)
         bs = BeautifulSoup(response.text, "html.parser")
 
         if table_number is None:
@@ -46,7 +49,13 @@ class TableParser:
         for row_name in rows_dict_keys:
             if int(row_name.lstrip(row_class_name)) < data_row_offset:
                 del rows_dict[row_name]
-
+        
+        if reversed_result is True:
+            reversed_rows_dict: dict[str, str] = {}
+            for key, value in rows_dict.items():
+                reversed_rows_dict[value] = key
+            return reversed_rows_dict
+        
         return rows_dict
 
     def parse_specific_row(
