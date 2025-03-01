@@ -23,6 +23,13 @@ async def back_to_main_menu_handler(query: CallbackQuery) -> None:
     )
 
 
+@router.callback_query(MainMenuCBData.filter(F.action == "ScheduleURL"))
+async def schedule_url_handler(query: CallbackQuery) -> None:
+    message_text = "<b>Точное расписание можно узнать здесь:</b>\n" + "http://www.mmcs.sfedu.ru/timetable"
+
+    await query.message.edit_text(message_text)
+
+
 @router.callback_query(QuestionCBData.filter(F.action == "Question"))
 async def ask_question_handler(query: CallbackQuery, callback_data: QuestionCBData, llm_repo: LLMRepository) -> None:
     await query.message.answer(
@@ -68,10 +75,10 @@ async def department_parse_handler(query: CallbackQuery, parse_repo: ParserRepos
     departments_dict = parse_repo.url_parser.parse_departments()
 
     for department_name, department_url in departments_dict.items():
-        cutted_department_url = "department_" + department_url.lstrip(
-            "http://www.mmcs.sfedu.ru/"
-            ).lstrip("http://www.mmcs.sfedu.ru/21-2009-02-18-12-38-00")
-        
+        cutted_department_url = "department_" + department_url.lstrip("http://www.mmcs.sfedu.ru/").lstrip(
+            "http://www.mmcs.sfedu.ru/21-2009-02-18-12-38-00",
+        )
+
         try:
             deep_link = await create_start_link(query.bot, cutted_department_url, encode=True)
         except:

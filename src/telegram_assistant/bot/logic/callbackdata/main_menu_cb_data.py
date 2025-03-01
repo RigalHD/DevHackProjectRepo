@@ -12,8 +12,3 @@ class QuestionCBData(CallbackData, prefix="question"):
 
 class ParseCBData(CallbackData, prefix="parse"):
     action: str
-
-
-class DynamicQuestionCBData(CallbackData, prefix="dynamic_question"):
-    action: str
-    question_id: str

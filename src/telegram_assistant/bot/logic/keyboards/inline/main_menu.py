@@ -16,7 +16,7 @@ def main_menu_kb() -> InlineKeyboardMarkup:
             ).pack(),
         ),
         InlineKeyboardButton(
-            text="Кафедры",  # Расскажи о кафедрах ЮФУ
+            text="Кафедры",
             callback_data=ParseCBData(
                 action="DepartmentsParse",
             ).pack(),
@@ -37,8 +37,8 @@ def main_menu_kb() -> InlineKeyboardMarkup:
             ).pack(),
         ),
         InlineKeyboardButton(
-            text="Расписание",  # дадим ссылку
-            callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
+            text="Расписание",
+            callback_data=MainMenuCBData(action="ScheduleURL").pack(),
         ),
         InlineKeyboardButton(
             text="Мероприятия",
