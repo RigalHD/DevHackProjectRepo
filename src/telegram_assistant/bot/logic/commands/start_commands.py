@@ -34,6 +34,12 @@ async def start_with_deep_link(
                 talk_about = "кафедре"
                 full_url = url_start + _id
                 context = parse_repo.base_parser.parse_department_page(full_url)
+            elif args.startswith("place_"):
+                use_llm = True
+                _id = args.lstrip("place_")
+                talk_about = "направлении"
+                full_url = "https://sfedu.ru/www/stat_pages22.show?p=ABT/N8206"
+                context = str(parse_repo.parse_specific_row(row_number=int(_id)))
 
             if use_llm:
                 await message.answer("Генерация ответа может занять некоторое время...")
