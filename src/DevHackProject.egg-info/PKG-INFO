@@ -4,9 +4,6 @@ Version: 1.0.0
 Requires-Python: >=3.13
 Description-Content-Type: text/markdown
 Requires-Dist: aiogram==3.18.0
-Requires-Dist: alembic==1.14.1
-Requires-Dist: asyncpg==0.30.0
-Requires-Dist: SQLAlchemy==2.0.38
 Requires-Dist: python-dotenv==1.0.1
 Requires-Dist: requests==2.32.3
 Requires-Dist: beautifulsoup4==4.13.3
@@ -26,18 +23,17 @@ pip install -e .
 pip install -e .[lint]
 ```
 
-### 2. Установка СУБД PostgreSQL:
-
-Вам потребуется установить данную СУБД и создать в ней базу данных
-**https://www.postgresql.org/**
-
-### 3. Создание .env файла:
+### 2. Создание .env файла:
 
 Для корректной работы проекта вам потребуется создать в корневой папке проекта файл .env по следующему шаблону:
 ```env
 BOT_TOKEN=<Токен Telegram бота>
 VK_TOKEN=<Toкен мини-приложения VK>
 LLM_TOKEN=<Токен LLM Yandex GPT>
+
+VK_OWNER_ID=<ID Вашего профиля VK (будет использоваться для парсинга)>
+VK_GROUP_ID=<ID Группы VK, парсинг которой будет произведен>
+VK_GROUP_DOMAIN=<Domain VK группы>
 ```
 
 ## Запуск проекта
