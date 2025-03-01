@@ -37,9 +37,18 @@ class BotConfig:
 
 
 @dataclass
+class VKConfig:
+    token: str = getenv("VK_TOKEN")
+    group_id: str = getenv("VK_GROUP_ID")
+    owner_id: str = getenv("VK_OWNER_ID")
+    group_domain: str = getenv("VK_GROUP_DOMAIN")
+
+
+@dataclass
 class Configuration:
     db = DatabaseConfig()
     bot = BotConfig()
+    vk = VKConfig()
 
 
 cfg = Configuration()

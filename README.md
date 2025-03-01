@@ -22,6 +22,10 @@ BOT_TOKEN=<Токен Telegram бота>
 VK_TOKEN=<Toкен мини-приложения VK>
 LLM_TOKEN=<Токен LLM Yandex GPT>
 
+VK_OWNER_ID=<ID Вашего профиля VK (будет использоваться для парсинга)>
+VK_GROUP_ID=<ID Группы VK, парсинг которой будет произведен>
+VK_GROUP_DOMAIN=<Domain VK группы>
+
 DATABASE_HOST=<Хост базы данных (обычно localhost)>
 DATABASE_PORT=<Порт базы данных (обычно 5432)>
 DATABASE_NAME=<Название, которые вы дали базе данных>
