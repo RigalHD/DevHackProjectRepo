@@ -39,3 +39,8 @@ src/telegram_assistant/database/models/user.py
 src/telegram_assistant/database/repositories/__init__.py
 src/telegram_assistant/database/repositories/abstract.py
 src/telegram_assistant/database/repositories/user.py
+src/telegram_assistant/parser/__init__.py
+src/telegram_assistant/parser/base_parser.py
+src/telegram_assistant/parser/parser.py
+src/telegram_assistant/parser/table_parser.py
+src/telegram_assistant/parser/url_parser.py

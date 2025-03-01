@@ -9,7 +9,8 @@ def pagination(
     page: int,
     models_per_page: int = 5,
 ) -> tuple[tuple[BaseModel], tuple[InlineKeyboardButton]]:
-    """Предназначается для удобной паггинации клавиатур aiogram
+    """
+    Предназначается для удобной паггинации клавиатур aiogram
     :param models: Последовательность моделей
     :switch_page_buttons: Кнопки для переключения страниц по шаблону [<Кнопка cлед. стр.>, <Кнопка пред. стр.>]
     :param page: Номер страницы
