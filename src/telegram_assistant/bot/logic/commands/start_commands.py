@@ -56,8 +56,7 @@ async def start_with_deep_link(
 
                 await message.answer(text=info)
 
-    except Exception as e:
-        raise e
+    except:
         await message.answer("К сожалению, у нас отсутствует информация или данные некорректны")
 
 
