@@ -31,7 +31,7 @@ class TableParser:
             значение - первая ячейка ряда.
         """
         response = requests.get(url=url)
-        
+
         bs = BeautifulSoup(response.text, "html.parser")
 
         if table_number is None:
