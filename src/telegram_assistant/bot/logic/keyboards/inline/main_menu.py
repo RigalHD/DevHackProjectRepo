@@ -16,13 +16,13 @@ def main_menu_kb() -> InlineKeyboardMarkup:
             ).pack(),
         ),
         InlineKeyboardButton(
-            text="Кафедры",  # Расскажи о кафедрах ЮФУ
+            text="Кафедры",
             callback_data=ParseCBData(
                 action="DepartmentsParse",
             ).pack(),
         ),
         InlineKeyboardButton(
-            text="Преподаватели",  # Расскажи о кафедрах ЮФУ
+            text="Преподаватели",
             callback_data=ParseCBData(
                 action="TeachersParse",
             ).pack(),
@@ -37,27 +37,15 @@ def main_menu_kb() -> InlineKeyboardMarkup:
             ).pack(),
         ),
         InlineKeyboardButton(
-            text="Расписание",  # дадим ссылку
-            callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
+            text="Расписание",
+            callback_data=MainMenuCBData(action="ScheduleURL").pack(),
         ),
         InlineKeyboardButton(
-            text="Мероприятия",  # Расскажи о последних мероприятих ЮФУ + опционально(, основываясь на постах)
+            text="Мероприятия",
             callback_data=QuestionCBData(
                 action="Question",
                 question_id="3",
             ).pack(),
-        ),
-    )
-
-    return builder.as_markup()
-
-
-def back_to_main_menu_kb() -> InlineKeyboardMarkup:
-    builder = InlineKeyboardBuilder()
-    builder.row(
-        InlineKeyboardButton(
-            text="В главное меню",
-            callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
         ),
     )
 
