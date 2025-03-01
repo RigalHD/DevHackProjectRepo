@@ -34,7 +34,7 @@ def main_menu_kb() -> InlineKeyboardMarkup:
             callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
         ),
     )
-                
+
     return builder.as_markup()
 
 
