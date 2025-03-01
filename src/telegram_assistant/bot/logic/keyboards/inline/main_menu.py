@@ -48,5 +48,13 @@ def main_menu_kb() -> InlineKeyboardMarkup:
             ).pack(),
         ),
     )
+    builder.row(
+        InlineKeyboardButton(
+            text="Направления и места",
+            callback_data=ParseCBData(
+                action="PlacesParse",
+            ).pack(),
+        ),
+    )
 
     return builder.as_markup()
