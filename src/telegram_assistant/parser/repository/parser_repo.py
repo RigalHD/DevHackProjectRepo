@@ -1,10 +1,16 @@
 from typing import Any
 
+from telegram_assistant.parser.base_parser import BaseParser
 from telegram_assistant.parser.table_parser import TableParser
+from telegram_assistant.parser.url_parser import URLParser
+from telegram_assistant.parser.vk_parser import VKParser
 
 
-class ParserRepo:
+class ParserRepository:
     def __init__(self) -> None:
+        self.vk_parser = VKParser()
+        self.url_parser = URLParser()
+        self.base_parser = BaseParser()
         self.table_parser = TableParser()
         self.lite_table_parse_settings: dict[str, str | int] = {
             "url": "https://sfedu.ru/www/stat_pages22.show?p=ABT/N8206",
