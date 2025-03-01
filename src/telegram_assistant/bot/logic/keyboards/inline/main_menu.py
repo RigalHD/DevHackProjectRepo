@@ -4,16 +4,8 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from telegram_assistant.bot.logic.callbackdata import MainMenuCBData
 
 
-def main_menu_kb(user_admin_profile: int) -> InlineKeyboardMarkup:
+def main_menu_kb() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
-
-    if user_admin_profile:
-        builder.row(
-            InlineKeyboardButton(
-                text="Админ-панель",
-                callback_data=MainMenuCBData(action="AdminPanelView").pack(),
-            ),
-        )
 
     return builder.as_markup()
 

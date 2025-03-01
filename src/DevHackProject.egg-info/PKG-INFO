@@ -38,12 +38,6 @@ pip install -e .[lint]
 BOT_TOKEN=<Токен Telegram бота>
 VK_TOKEN=<Toкен мини-приложения VK>
 LLM_TOKEN=<Токен LLM Yandex GPT>
-
-DATABASE_HOST=<Хост базы данных (обычно localhost)>
-DATABASE_PORT=<Порт базы данных (обычно 5432)>
-DATABASE_NAME=<Название, которые вы дали базе данных>
-DATABASE_PASSWORD=<Пароль от базы данных>
-DATABASE_USER=<Имя пользователя базы данных>
 ```
 
 ## Запуск проекта
