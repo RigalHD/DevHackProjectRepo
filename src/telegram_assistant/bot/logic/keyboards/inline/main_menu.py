@@ -2,7 +2,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from telegram_assistant.bot.logic.callbackdata import MainMenuCBData
-from telegram_assistant.bot.logic.callbackdata.main_menu_cb_data import QuestionCBData
+from telegram_assistant.bot.logic.callbackdata.main_menu_cb_data import ParseCBData, QuestionCBData
 
 
 def main_menu_kb() -> InlineKeyboardMarkup:
@@ -13,35 +13,39 @@ def main_menu_kb() -> InlineKeyboardMarkup:
             callback_data=QuestionCBData(
                 action="Question",
                 question_id="1",
-                ).pack(),
+            ).pack(),
         ),
         InlineKeyboardButton(
-            text="Кафедры", # Расскажи о кафедрах ЮФУ
-            callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
+            text="Кафедры",  # Расскажи о кафедрах ЮФУ
+            callback_data=ParseCBData(
+                action="DepartmentsParse",
+            ).pack(),
         ),
         InlineKeyboardButton(
-            text="Преподаватели", # Расскажи о преподавателе <ФИО> из ЮФУ
-            callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
+            text="Преподаватели",  # Расскажи о кафедрах ЮФУ
+            callback_data=ParseCBData(
+                action="TeachersParse",
+            ).pack(),
         ),
     )
     builder.row(
         InlineKeyboardButton(
-            text="Поступление", # Расскажи о поступлении в ЮФУ
+            text="Поступление",
             callback_data=QuestionCBData(
                 action="Question",
                 question_id="2",
-                ).pack(),
+            ).pack(),
         ),
         InlineKeyboardButton(
-            text="Расписание", # дадим ссылку
+            text="Расписание",  # дадим ссылку
             callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
         ),
         InlineKeyboardButton(
-            text="Мероприятия", # Расскажи о последних мероприятих ЮФУ + опционально(, основываясь на постах)
+            text="Мероприятия",  # Расскажи о последних мероприятих ЮФУ + опционально(, основываясь на постах)
             callback_data=QuestionCBData(
                 action="Question",
                 question_id="3",
-                ).pack(),
+            ).pack(),
         ),
     )
 

@@ -23,7 +23,11 @@ class URLParser:
         for data in all_text:
             for li in data.find_all("li"):
                 teacher_name = li.get_text().strip()
-                url = li.find("a").get("href")
+                url = li.find("a").get("href").lstrip("/%20")
+                if url.startswith("https:/sfedu.ru"):
+                    url_as_list = list(url)
+                    url_as_list.insert(7, "/")
+                    url = "".join(url_as_list)
                 teachers[teacher_name] = url
 
         return teachers
