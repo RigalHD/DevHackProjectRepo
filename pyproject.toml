@@ -1,0 +1,103 @@
+[build-system]
+requires = [
+    'setuptools==75.8.2',
+]
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'DevHackProject'
+version = '1.0.0'
+readme = 'README.md'
+requires-python = '>=3.13'
+
+dependencies = [
+    'aiogram==3.18.0',
+    'python-dotenv==1.0.1',
+    'requests==2.32.3',
+    'beautifulsoup4==4.13.3'
+]
+
+[project.optional-dependencies]
+lint = [
+    'ruff==0.9.4',
+]
+build = [
+    'pyinstaller==6.11.1',
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.ruff]
+line-length = 120
+include = ["pyproject.toml", "src/**/*.py"]
+
+[tool.ruff.lint]
+select = ['ALL']
+
+ignore = [
+  # Strange and obscure
+  'D100',
+  'D104',
+  'D101',
+  'D105',
+  'D102',
+  'RET504',
+  'D103',
+  'PLR0913',
+  'S101',
+  'EM101',
+  'TRY003',
+  'D107',
+  'ARG002',
+  'RUF001',
+  'TC003',
+  'PLR0912',
+  'C901',
+  'SIM21',
+  'RUF003',
+  'SIM110',
+  'D200',
+  'RET503',
+  'RUF002',
+  'D415',
+  'D400',
+  'SIM118',
+  'SIM108',
+  'FBT001',
+  'FBT002',
+  'D212',
+  'W293',
+  # Does not work correctly
+  'TC002',
+  'TC001',
+  'S311',
+  'PGH003',
+  'D205',
+  'EXE001',
+  # Not important now
+  'RUF009',
+  'ANN401',
+  'BLE001',
+  'T201',
+  'S113',
+  'ANN002',
+  'ANN003',
+  'PLC0206',
+  'PERF403',
+  'TRY002',
+  'E722',
+  'B005',
+  'S112',
+  'PTH123',
+  # Temporary
+  'EXE005',
+  'EXE003',
+  'ERA001',
+]
+
+[project.scripts]
+telegram_assistant = "telegram_assistant.bot.__main__:main"

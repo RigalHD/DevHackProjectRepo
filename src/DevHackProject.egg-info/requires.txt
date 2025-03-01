@@ -1,0 +1,10 @@
+aiogram==3.18.0
+python-dotenv==1.0.1
+requests==2.32.3
+beautifulsoup4==4.13.3
+
+[build]
+pyinstaller==6.11.1
+
+[lint]
+ruff==0.9.4
