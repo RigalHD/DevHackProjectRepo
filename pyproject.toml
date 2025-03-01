@@ -88,6 +88,11 @@ ignore = [
   'ANN003',
   'PLC0206',
   'PERF403',
+  'TRY002',
+  'E722',
+  'B005',
+  'S112',
+  'PTH123',
   # Temporary
   'EXE005',
   'EXE003',

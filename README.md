@@ -15,6 +15,7 @@ pip install -e .[lint]
 ```env
 BOT_TOKEN=<Токен Telegram бота>
 VK_TOKEN=<Toкен мини-приложения VK>
+
 LLM_TOKEN=<Токен LLM Yandex GPT>
 LLM_FOLDER_ID=<Folder ID LLM Yandex GPT>
 
