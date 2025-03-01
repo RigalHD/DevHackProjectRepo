@@ -16,7 +16,7 @@ async def start_with_deep_link(
     command: CommandObject,
     parse_repo: ParserRepository,
     llm_repo: LLMRepository,
-):
+) -> None:
     try:
         if args := decode_payload(command.args):
             use_llm = False
@@ -43,7 +43,8 @@ async def start_with_deep_link(
                     f"то ты должен дать в ответе извиниться и дать эту ссылку: {full_url}"
                 )
                 info = llm_repo.get_dynamic_question_info(
-                    question=f"Расскажи об этом {talk_about} вкратце, ID={_id}", context=context + context_addition,
+                    question=f"Расскажи об этом {talk_about} вкратце, ID={_id}",
+                    context=context + context_addition,
                 )
 
                 await message.answer(text=info)
