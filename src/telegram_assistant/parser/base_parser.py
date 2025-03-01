@@ -55,3 +55,22 @@ class BaseParser:
             img.decompose()
 
         return content.get_text()
+
+    def parse_department_page(self, url: str) -> str:
+        """
+        :param url: Ссылка на URL страницы кафедры
+        Парсит сайт кафедры (Возвращает строку)
+        """
+        response = requests.get(url, timeout=10)
+
+        bs = BeautifulSoup(response.text, "html.parser")
+
+        if "://sfedu.ru" in url:
+            return url
+        info_block = bs.find("div", class_="newsitem_text")
+        imgs = info_block.find_all("img")
+        for img in imgs:
+            img.decompose()
+        text = info_block.get_text()
+
+        return text
