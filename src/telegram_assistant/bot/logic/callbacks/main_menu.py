@@ -8,7 +8,6 @@ from telegram_assistant.bot.logic.keyboards.inline import main_menu_kb
 from telegram_assistant.llm.llm_repo import LLMRepository
 from telegram_assistant.parser.repository.parser_repo import ParserRepository
 
-
 router = Router()
 
 MAX_MESSAGE_LEN = 4000
@@ -41,7 +40,7 @@ async def ask_question_handler(query: CallbackQuery, callback_data: QuestionCBDa
 async def teachers_parse_handler(query: CallbackQuery, parse_repo: ParserRepository) -> None:
     message_texts: list[str] = [""]
     teachers_dict = parse_repo.url_parser.parse_teachers()
-    
+
     for teacher_name, teacher_url in teachers_dict.items():
         cutted_teacher_url = "teacher_" + teacher_url.split("/")[-1]
         try:
@@ -59,7 +58,34 @@ async def teachers_parse_handler(query: CallbackQuery, parse_repo: ParserReposit
             text=text,
             parse_mode="HTML",
         )
-    
-    await query.message.answer(
-        text="Нажмите на ФИО любого учителя, чтобы получить краткий рассказ о нем"
-    )
+
+    await query.message.answer(text="Нажмите на ФИО любого учителя, чтобы получить краткий рассказ о нем")
+
+
+@router.callback_query(ParseCBData.filter(F.action == "DepartmentsParse"))
+async def department_parse_handler(query: CallbackQuery, parse_repo: ParserRepository) -> None:
+    message_texts: list[str] = [""]
+    departments_dict = parse_repo.url_parser.parse_departments()
+
+    for department_name, department_url in departments_dict.items():
+        cutted_department_url = "department_" + department_url.lstrip(
+            "http://www.mmcs.sfedu.ru/"
+            ).lstrip("http://www.mmcs.sfedu.ru/21-2009-02-18-12-38-00")
+        
+        try:
+            deep_link = await create_start_link(query.bot, cutted_department_url, encode=True)
+        except:
+            continue
+        department_info = f'<a href="{deep_link}">{department_name}</a>\n'
+        if len(message_texts[-1] + department_info) > MAX_MESSAGE_LEN:
+            message_texts.append(department_info)
+        else:
+            message_texts[-1] += department_info
+
+    for text in message_texts:
+        await query.message.answer(
+            text=text,
+            parse_mode="HTML",
+        )
+
+    await query.message.answer(text="Чтобы узнать о кафедре больше, Вам нужно нажать на ее название")
