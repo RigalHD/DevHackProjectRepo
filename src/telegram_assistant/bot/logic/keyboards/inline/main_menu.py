@@ -8,29 +8,29 @@ def main_menu_kb() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.row(
         InlineKeyboardButton(
-            text="Узнать o ЮФУ",
+            text="Узнать o ЮФУ", # Расскажи о ЮФУ
             callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
         ),
         InlineKeyboardButton(
-            text="Кафедрах",
+            text="Кафедры", # Расскажи о кафедрах ЮФУ
             callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
         ),
         InlineKeyboardButton(
-            text="Преподаватели",
+            text="Преподаватели", # Расскажи о преподавателе <ФИО> из ЮФУ
             callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
         ),
     )
     builder.row(
         InlineKeyboardButton(
-            text="Поступление",
+            text="Поступление", # Расскажи о поступлении в ЮФУ
             callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
         ),
         InlineKeyboardButton(
-            text="Расписание",
+            text="Расписание", # дадим ссылку
             callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
         ),
         InlineKeyboardButton(
-            text="Мероприятия",
+            text="Мероприятия", # Расскажи о последних мероприятих ЮФУ, основываясь на постах
             callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
         ),
     )
