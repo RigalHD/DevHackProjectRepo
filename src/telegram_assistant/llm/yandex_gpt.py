@@ -28,5 +28,5 @@ class YandexGPT:
             headers={"Accept": "application/json", "Authorization": f"Api-Key {self.api_key}"},
             json=data,
         ).json()
-        
+
         return response["result"]["alternatives"][0]["message"]["text"]

@@ -6,7 +6,7 @@ from telegram_assistant.parser.url_parser import URLParser
 from telegram_assistant.parser.vk_parser import VKParser
 
 
-class ParserRepo:
+class ParserRepository:
     def __init__(self) -> None:
         self.vk_parser = VKParser()
         self.url_parser = URLParser()
