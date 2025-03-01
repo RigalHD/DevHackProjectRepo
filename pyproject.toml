@@ -15,7 +15,9 @@ dependencies = [
     'alembic==1.14.1',
     'asyncpg==0.30.0',
     'SQLAlchemy==2.0.38',
-    'python-dotenv==1.0.1'
+    'python-dotenv==1.0.1',
+    'requests==2.32.3',
+    'beautifulsoup4==4.13.3'
 ]
 
 [project.optional-dependencies]
@@ -66,6 +68,12 @@ ignore = [
   'RUF002',
   'D415',
   'D400',
+  'SIM118',
+  'SIM108',
+  'FBT001',
+  'FBT002',
+  'D212',
+  'W293',
   # Does not work correctly
   'TC002',
   'TC001',
@@ -78,6 +86,9 @@ ignore = [
   'ANN401',
   'BLE001',
   'T201',
+  'S113',
+  'ANN002',
+  'ANN003',
   # Temporary
   'EXE005',
   'EXE003',
