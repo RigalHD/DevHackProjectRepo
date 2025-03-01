@@ -49,13 +49,13 @@ class TableParser:
         for row_name in rows_dict_keys:
             if int(row_name.lstrip(row_class_name)) < data_row_offset:
                 del rows_dict[row_name]
-        
+
         if reversed_result is True:
             reversed_rows_dict: dict[str, str] = {}
             for key, value in rows_dict.items():
                 reversed_rows_dict[value] = key
             return reversed_rows_dict
-        
+
         return rows_dict
 
     def parse_specific_row(
