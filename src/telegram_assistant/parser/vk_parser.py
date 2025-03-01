@@ -33,7 +33,7 @@ class VKParser:
 
         return group_info
 
-    def parse_vk_wall_posts(self, posts_count: int = 50, is_dict: bool = True) -> dict[int, str] | str:
+    def parse_vk_wall_posts(self, posts_count: int = 50, is_dict: bool = False) -> dict[int, str] | str:
         """
         :param number: Указывает сколько постов нужно получить (Значение по умолчанию: 50);
         :param is_dict: True - возвращает словарь (КЛЮЧ - номер поста ЗНАЧЕНИЕ - текст поста),
@@ -65,7 +65,7 @@ class VKParser:
         for get_post in posts:
             posts_dict[posts.index(get_post)] = get_post["text"].replace(" \n", "").replace("\n", "")
 
-        all_posts_text = " ".join(list(posts_dict.values()))
+        all_posts_text = "  |  ".join(list(posts_dict.values()))
 
         if is_dict:
             return posts_dict

@@ -6,6 +6,6 @@ class MainMenuCBData(CallbackData, prefix="main_menu"):
 
 
 class QuestionCBData(CallbackData, prefix="question"):
-    action: str
-    question: str
+    action: str = "Question"
+    question_id: str
      
