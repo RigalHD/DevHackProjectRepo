@@ -1,3 +1,5 @@
+from typing import Any
+
 import requests
 
 from telegram_assistant.config import Configuration
@@ -6,7 +8,7 @@ from telegram_assistant.config import Configuration
 class VKParser:
     def parse_vk_group_info(self) -> dict:
         """
-        Возвращает словарь с информацией о группе Вконтакте
+        Возвращает словарь c информацией o группе Вконтакте
         """
         config_vk = Configuration().vk
 
@@ -31,19 +33,17 @@ class VKParser:
 
         return group_info
 
-    def parse_vk_wall_posts(self, number: int = 50, is_dict: bool = True) -> dict[int, str] | str:
+    def parse_vk_wall_posts(self, posts_count: int = 50, is_dict: bool = True) -> dict[int, str] | str:
         """
-        :param isdict: True - возвращает словарь (КЛЮЧ - номер поста ЗНАЧЕНИЕ - текст поста)
-                        False - возвращает строку с текстом всех постов
-        :param number: Указывает сколько постов нужно получить (Значение по умолчанию: 50)
+        :param number: Указывает сколько постов нужно получить (Значение по умолчанию: 50);
+        :param is_dict: True - возвращает словарь (КЛЮЧ - номер поста ЗНАЧЕНИЕ - текст поста),
+                        False - возвращает строку c текстом всех постов.
         """
         config_vk = Configuration().vk
 
-        count: int = number  # Количество постов
-        posts: list = []  # Список всех запарсенных постов
-        posts_text_and_number: dict = {}  # Словарь с №Списка и Текстом
-        text_list: list = []  # Список всего текса всех постов
-        text: str  # Тескт всех постов
+        posts: list[dict[str, Any]] = []
+        posts_dict: dict[int, str] = {}  # Ключ - номер поста, значение - текст поста
+        all_posts_text: str  # Тескт всех постов
 
         result_post = requests.get(
             "https://api.vk.com/method/wall.get",
@@ -51,7 +51,7 @@ class VKParser:
                 "owner_id": config_vk.owner_id,
                 "access_token": config_vk.token,
                 "v": "5.199",
-                "count": count,
+                "count": posts_count,
                 "domain": config_vk.group_domain,
             },
         )
@@ -63,11 +63,11 @@ class VKParser:
         posts.extend(post)
 
         for get_post in posts:
-            posts_text_and_number[posts.index(get_post)] = get_post["text"]
-            text_list.append(get_post["text"])
+            posts_dict[posts.index(get_post)] = get_post["text"].replace(" \n", "").replace("\n", "")
 
-        text = " ".join(text_list)
+        all_posts_text = " ".join(list(posts_dict.values()))
 
         if is_dict:
-            return posts_text_and_number
-        return text
+            return posts_dict
+
+        return all_posts_text
