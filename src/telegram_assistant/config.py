@@ -12,6 +12,12 @@ class BotConfig:
 
 
 @dataclass
+class LLMConfig:
+    token: str = getenv("LLM_TOKEN")
+    folder_id: str = getenv("LLM_FOLDER_ID")
+
+
+@dataclass
 class VKConfig:
     token: str = getenv("VK_TOKEN")
     group_id: str = getenv("VK_GROUP_ID")
@@ -23,6 +29,7 @@ class VKConfig:
 class Configuration:
     bot = BotConfig()
     vk = VKConfig()
+    llm = LLMConfig()
 
 
 cfg = Configuration()

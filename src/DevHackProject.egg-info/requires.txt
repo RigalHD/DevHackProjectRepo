@@ -1,7 +1,4 @@
 aiogram==3.18.0
-alembic==1.14.1
-asyncpg==0.30.0
-SQLAlchemy==2.0.38
 python-dotenv==1.0.1
 requests==2.32.3
 beautifulsoup4==4.13.3
