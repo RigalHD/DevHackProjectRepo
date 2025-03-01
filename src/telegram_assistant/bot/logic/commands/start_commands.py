@@ -36,6 +36,7 @@ async def start_with_deep_link(
                 context = parse_repo.base_parser.parse_department_page(full_url)
 
             if use_llm:
+                await message.answer("Генерация ответа может занять некоторое время...")
                 context_addition = (
                     "Максимальная длина твоего ответа - 3000 символов."
                     " На айди вопроса не обращай внимание!"
@@ -55,7 +56,10 @@ async def start_with_deep_link(
 
 @router.message(CommandStart())
 async def start(message: Message) -> None:
-    message_text = f"<b>Приветствую, {message.from_user.first_name}</b>"
+    message_text = f"<b>Приветствую, {message.from_user.first_name}</b>\n"\
+        "Данный бот сочетает в себе актуальную информацию и ИИ ассистента,"\
+            "что позволяет пользователю получать краткую и "\
+                "максимально информативную выжимку данных"
 
     await message.answer(
         text=message_text,

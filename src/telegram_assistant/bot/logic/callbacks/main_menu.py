@@ -4,7 +4,6 @@ from aiogram.utils.deep_linking import create_start_link
 
 from telegram_assistant.bot.logic.callbackdata import MainMenuCBData
 from telegram_assistant.bot.logic.callbackdata.main_menu_cb_data import ParseCBData, QuestionCBData
-from telegram_assistant.bot.logic.keyboards.inline import main_menu_kb
 from telegram_assistant.llm.llm_repo import LLMRepository
 from telegram_assistant.parser.repository.parser_repo import ParserRepository
 
@@ -13,21 +12,11 @@ router = Router()
 MAX_MESSAGE_LEN = 4000
 
 
-@router.callback_query(MainMenuCBData.filter(F.action == "BackToMainMenu"))
-async def back_to_main_menu_handler(query: CallbackQuery) -> None:
-    message_text = f"<b>Приветствую, {query.from_user.first_name}</b>\n\n"
-
-    await query.message.edit_text(
-        text=message_text,
-        reply_markup=main_menu_kb(),
-    )
-
-
 @router.callback_query(MainMenuCBData.filter(F.action == "ScheduleURL"))
 async def schedule_url_handler(query: CallbackQuery) -> None:
     message_text = "<b>Точное расписание можно узнать здесь:</b>\n" + "http://www.mmcs.sfedu.ru/timetable"
 
-    await query.message.edit_text(message_text)
+    await query.message.answer(message_text)
 
 
 @router.callback_query(QuestionCBData.filter(F.action == "Question"))

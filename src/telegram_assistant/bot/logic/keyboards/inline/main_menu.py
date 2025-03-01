@@ -50,15 +50,3 @@ def main_menu_kb() -> InlineKeyboardMarkup:
     )
 
     return builder.as_markup()
-
-
-def back_to_main_menu_kb() -> InlineKeyboardMarkup:
-    builder = InlineKeyboardBuilder()
-    builder.row(
-        InlineKeyboardButton(
-            text="В главное меню",
-            callback_data=MainMenuCBData(action="BackToMainMenu").pack(),
-        ),
-    )
-
-    return builder.as_markup()
