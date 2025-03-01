@@ -11,8 +11,8 @@ def main_menu_kb() -> InlineKeyboardMarkup:
         InlineKeyboardButton(
             text="Узнать o ЮФУ",
             callback_data=QuestionCBData(
-                action="AskQuestion",
-                question="Расскажи о ЮФУ"
+                action="Question",
+                question_id="1",
                 ).pack(),
         ),
         InlineKeyboardButton(
@@ -28,8 +28,8 @@ def main_menu_kb() -> InlineKeyboardMarkup:
         InlineKeyboardButton(
             text="Поступление", # Расскажи о поступлении в ЮФУ
             callback_data=QuestionCBData(
-                action="AskQuestion",
-                question="Расскажи о поступлении в ЮФУ",
+                action="Question",
+                question_id="2",
                 ).pack(),
         ),
         InlineKeyboardButton(
@@ -39,8 +39,8 @@ def main_menu_kb() -> InlineKeyboardMarkup:
         InlineKeyboardButton(
             text="Мероприятия", # Расскажи о последних мероприятих ЮФУ + опционально(, основываясь на постах)
             callback_data=QuestionCBData(
-                action="AskQuestion",
-                question="Расскажи о последних мероприятих ЮФУ",
+                action="Question",
+                question_id="3",
                 ).pack(),
         ),
     )

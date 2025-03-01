@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 ADMISSION_RULES_URL = "https://sfedu.ru/www/stat_pages22.show?p=ABT/N8202/P"
+UNIVERSITY_INFO_URL = "https://sfedu.ru/www/stat_pages22.show?p=UNI/main/M"
 
 
 class BaseParser:
@@ -40,6 +41,15 @@ class BaseParser:
         if not html:
             return all_text[0].get_text()
         return str(all_text[0].prettify())
+
+    def parse_university_info(self) -> str:
+        response = requests.get(UNIVERSITY_INFO_URL, timeout=10)
+
+        bs = BeautifulSoup(response.text, "html.parser")
+
+        content = bs.find(class_="content_wrapper")
+
+        return content.get_text()
 
     def parse_teacher_info(self, url: str) -> str:
         """Принимает url преподавателя и возвращает текст с его описанием"""
