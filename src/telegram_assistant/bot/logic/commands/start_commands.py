@@ -39,7 +39,7 @@ async def start_with_deep_link(
                 _id = args.lstrip("place_")
                 talk_about = "направлении"
                 full_url = "https://sfedu.ru/www/stat_pages22.show?p=ABT/N8206"
-                context = str(parse_repo.parse_specific_row(row_number=int(_id),))
+                context = str(parse_repo.parse_specific_row(row_number=int(_id)))
 
             if use_llm:
                 await message.answer("Генерация ответа может занять некоторое время...")
