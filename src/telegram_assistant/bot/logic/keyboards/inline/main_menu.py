@@ -44,7 +44,7 @@ def main_menu_kb() -> InlineKeyboardMarkup:
                 ).pack(),
         ),
     )
-                
+
     return builder.as_markup()
 
 
