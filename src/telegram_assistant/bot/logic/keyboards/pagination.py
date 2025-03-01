@@ -1,20 +1,20 @@
-from aiogram.types import InlineKeyboardButton
+from typing import Any
 
-from src.telegram_assistant.database import BaseModel
+from aiogram.types import InlineKeyboardButton
 
 
 def pagination(
-    models: list[BaseModel],
+    models: list[Any],
     switch_page_buttons: list[InlineKeyboardButton],
     page: int,
     models_per_page: int = 5,
-) -> tuple[tuple[BaseModel], tuple[InlineKeyboardButton]]:
+) -> tuple[tuple[Any], tuple[InlineKeyboardButton]]:
     """
     Предназначается для удобной паггинации клавиатур aiogram
-    :param models: Последовательность моделей
+    :param models: список элементов для паггинации
     :switch_page_buttons: Кнопки для переключения страниц по шаблону [<Кнопка cлед. стр.>, <Кнопка пред. стр.>]
     :param page: Номер страницы
-    :return: Возращает кортеж из моделей и кнопок для текущей страницы
+    :return: Возращает кортеж из элементов и кнопок для текущей страницы
     """
     switch_page_buttons = switch_page_buttons.copy()
 
